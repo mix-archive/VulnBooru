@@ -11,16 +11,26 @@ from .model import DeepDanbooruModel
 
 logger = getLogger(__name__)
 
-MODEL_PATH = Path("./checkpoints")
-
 
 class ModelLoader:
     current_active_model: ClassVar[Optional["ModelLoader"]] = None
+    model_path = Path("./checkpoints")
     ready = False
 
-    @staticmethod
-    def available_models() -> Dict[str, Path]:
-        return {path.stem: path for path in MODEL_PATH.glob("*.pt")}
+    @classmethod
+    def available_models(cls) -> Dict[str, Path]:
+        return {path.stem: path for path in cls.model_path.glob("*.pt")}
+
+    @classmethod
+    def delete_model(cls, name: str) -> None:
+        if (
+            cls.current_active_model is not None
+            and cls.current_active_model.name == name
+        ):
+            cls.current_active_model = None
+        if (path := ModelLoader.available_models().get(name)) is None:
+            raise ValueError(f"Model {name} not found")
+        path.unlink()
 
     def __init__(self, name: str) -> None:
         self.name = name
