@@ -2,9 +2,7 @@
 name = "vulnbooru"
 version = "0.1.0"
 description = "DeepDanbooru image labeling online, but vulnerable (TSCTF-J 2023)."
-authors = [
-    {name = "Mix", email = "32300164+mnixry@users.noreply.github.com"},
-]
+authors = [{ name = "Mix", email = "32300164+mnixry@users.noreply.github.com" }]
 dependencies = [
     "torch>=2.0.1",
     "fastapi>=0.101.1",
@@ -12,16 +10,15 @@ dependencies = [
     "numpy>=1.24.4",
     "pillow>=10.0.0",
     "rich>=13.5.2",
+    "python-dotenv>=1.0.0",
 ]
 requires-python = ">=3.8"
 readme = "README.md"
-license = {text = "GPL-3.0"}
+license = { text = "GPL-3.0" }
 
 [build-system]
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
 [tool.pdm.dev-dependencies]
-dev = [
-    "ruff>=0.0.284",
-]
+dev = ["ruff>=0.0.284"]
