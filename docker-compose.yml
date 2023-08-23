@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  app:
+    build: .
+    image: vulnbooru
+    ports:
+      - "8080:8080"
